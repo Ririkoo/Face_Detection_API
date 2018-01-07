@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+    <script src="{{ url_for('static', filename='jquery-1.11.3.js') }}"></script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    <title>Face Detection</title>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Face Detection</a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="span6">
+        <form id="upload-image" method="post" enctype="multipart/form-data">
+            <label class="btn btn-default btn-file">
+                Browse <input id="image_up" accept="image/*" type="file" name="file" style="display: none">
+            </label>
+            <input type="submit" id="submit_pic" value="Send to Detect!" class="btn btn-primary">
+        </form>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-sm-5">
+            <p class="lead">Image</p>
+            <img id="preview" src="" class="img-responsive">
+        </div>
+        <div class="col-sm-6">
+            <p class="lead">Result:</p>
+            <textarea id="facelandmark" rows="20" cols="80" class="form-control">
+        </textarea>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">Cloud Computing - 2017 Fall Final Project. @Runzhe Zhan</p>
+    </div>
+</footer>
+
+</body>
+</html>
