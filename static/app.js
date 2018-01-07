@@ -2,7 +2,7 @@ $(function () {
     $("#image_up").change(function(){
       readImage( this );
     });
-    $('#submit_pic').click(function () {
+    $('#submit_pic').on('click', function (event) {
         event.preventDefault();
         var form_data = new FormData($('#upload-image')[0]);
         $.ajax({
@@ -11,6 +11,7 @@ $(function () {
             data: form_data,
             contentType: false,
             processData: false,
+            async: false,
             dataType: 'json'
         }).done(function (data, textStatus, jqXHR) {
             console.log(data);
