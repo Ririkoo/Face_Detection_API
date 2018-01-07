@@ -2,14 +2,12 @@ import cv2
 import numpy as np
 from flask import Flask, request, render_template, jsonify
 
-DEBUG = True
-SECRET_KEY = 'mkz75asklLd5wdA9'
 app = Flask(__name__)
 app.config.from_object(__name__)
 
 
 def detect_faces(image):
-    faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+    faceCascade = cv2.CascadeClassifier("/root/face_detect_api/haarcascade_frontalface_default.xml")
     image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     faces = faceCascade.detectMultiScale(
         image,
@@ -19,9 +17,6 @@ def detect_faces(image):
         flags=cv2.CASCADE_SCALE_IMAGE
     )
     coordinates = [(int(x), int(y), int(x + w), int(y + h)) for (x, y, w, h) in faces]
-    # for (startX, startY, endX, endY) in coordinates:
-    #     cv2.rectangle(image, (startX, startY), (endX, endY), (0, 255, 0), 2)
-    # cv2.imwrite('tets.jpg',image)
     try:
         return coordinates
     except:
@@ -34,7 +29,6 @@ def main():
 
 
 @app.route("/prediction", methods=["POST"])
-# curl -X POST -F file=@abba.png 'http://localhost:8888/prediction'
 def prediction():
     if request.method == "POST":
         stream = request.files["file"]
